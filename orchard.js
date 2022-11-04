@@ -183,10 +183,10 @@ console.log('Total daily count of pink apples: ', pinkTons);
 
 // CODE HERE 
 
-
-let fujiPounds = fujiTons.reduce((sum, currentValue) => (sum + currentValue) * 2000, 0);
-let galaPounds = galaTons.reduce((sum, currentValue) => (sum + currentValue) * 2000, 0);
-let pinkPounds = pinkTons.reduce((sum, currentValue) => (sum + currentValue) * 2000, 0);
+//Uses Array.reduce() method to calculate the sum of the ton values and convert
+let fujiPounds = fujiTons.reduce((sum, currentValue) => (sum + currentValue), 0) * 2000;
+let galaPounds = galaTons.reduce((sum, currentValue) => (sum + currentValue), 0) * 2000;
+let pinkPounds = pinkTons.reduce((sum, currentValue) => (sum + currentValue), 0) * 2000;
 
 //print values in pounds to console
 console.log(`The total number of fuji apples picked in pounds is: ${fujiPounds}`);
