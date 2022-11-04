@@ -31,7 +31,7 @@ const fujiAcres = [2, 3, 3, 2, 2, 2, 1]
 const galaAcres = [5, 2, 4, 3, 6, 2, 4]
 const pinkAcres = [1, 5, 4, 2, 1, 5, 4]
 
-const fujiPrice = .89 
+const fujiPrice = .89
 const galaPrice = .64
 const pinkPrice = .55
 
@@ -51,7 +51,14 @@ const pinkPrice = .55
 
 // CODE HERE
 
-
+let totalAcres = 0;
+//Define iterator start value, condition, and incrementor
+for (let i = 0; i < 7; i++) {
+    // reassign value of 'totalAcres' to the sum of acre totals for each day using the + operator
+    totalAcres += fujiAcres[i] + galaAcres[i] + pinkAcres[i];
+}
+//print 'totalAcres' to console
+console.log(`The total number of acres picked out of all 3 acre types is : ${totalAcres}`);
 
 
 
@@ -60,15 +67,18 @@ const pinkPrice = .55
 /*
     Using `totalAcres`, calculate the average 
     number of acres picked per day. 
-
+ 
     Save the answer to a variable called 
     `averageDailyAcres`. 
-
+ 
     Log `averageDailyAcres` to the console.
 */
 
 // CODE HERE
-
+//Initialize a variable that stores the value of 'totalAcres' divided by 7 to determine daily average
+let averageDailyAcres = totalAcres / 7;
+//print average to console
+console.log(`The average number of acres daily is : ${averageDailyAcres}`);
 
 
 
@@ -92,53 +102,64 @@ const pinkPrice = .55
     On each iteration of the loop:
     - add 1 to the `days` variable
     - subtract your daily average from the number of acres left
-
+ 
     Outside the loop, log `days` to the console.
-
+ 
     Note: This is not the most efficient way to
     calculate this number. But! It is a great
     way to get a whole number without using 
     any Math methods. 
-
+ 
 */
 
-let acresLeft = 174 
+let acresLeft = 174
 let days = 0
 
 // CODE HERE
+//initialize while loop condition
+while (acresLeft > 0) {
+    //subtract daily average from acresLeft value
+    acresLeft -= averageDailyAcres;
+    days += 1;
+}
 
+console.log(`Picking apples for ${days} days to clear remaining acres.`);
 
 
 // PROBLEM 4
 
 /*
     Your next task is to create 3 arrays
-    that list the daily amount of apples 
-    picked, in tons, for each variety. 
-    
+    that list the daily amount of apples
+    picked, in tons, for each variety.
+
     Each acre yields 6.5 tons of apples.
 
-    Use the variables below to store 
+    Use the variables below to store
     your new arrays. Make sure that you
-    don't modify the original arrays 
+    don't modify the original arrays
     on lines 36 - 38.
 
     Log each of your arrays to the console.
 
-    Hint: you can use the slice method 
-    to make copies of the arrays and 
+    Hint: you can use the slice method
+    to make copies of the arrays and
     then loop the copies. You could also
     make empty arrays, loop the old ones
-    and use the push method to add new 
+    and use the push method to add new
     values to the new arrays.
 */
 
 // CODE HERE
+// Uses Array.map() method to create a new array that converts the acre count to tons for each item in the corresponding original array
+let fujiTons = fujiAcres.map(el => el * 6.5);
+let galaTons = galaAcres.map(el => el * 6.5);
+let pinkTons = pinkAcres.map(el => el * 6.5);
 
-// let fujiTons =
-// let galaTons =
-// let pinkTons =
-
+//print each new array to console
+console.log('Total daily count of fuji apples: ', fujiTons);
+console.log('Total daily count of gala apples: ', galaTons);
+console.log('Total daily count of pink apples: ', pinkTons);
 
 
 
@@ -147,13 +168,13 @@ let days = 0
 // PROBLEM 5
 
 /*
-    Next, calculate the total number of 
+    Next, calculate the total number of
     pounds picked per variety.
 
     You'll need to add up the tons per
-    each variety and convert the number 
+    each variety and convert the number
     into pounds -- store that number in
-    the variables given below. 
+    the variables given below.
 
     Log each of the values to the console.
 
@@ -162,11 +183,15 @@ let days = 0
 
 // CODE HERE 
 
-// let fujiPounds =
-// let galaPounds =
-// let pinkPounds =
 
+let fujiPounds = fujiTons.reduce((sum, currentValue) => (sum + currentValue) * 2000, 0);
+let galaPounds = galaTons.reduce((sum, currentValue) => (sum + currentValue) * 2000, 0);
+let pinkPounds = pinkTons.reduce((sum, currentValue) => (sum + currentValue) * 2000, 0);
 
+//print values in pounds to console
+console.log(`The total number of fuji apples picked in pounds is: ${fujiPounds}`);
+console.log(`The total number of gala apples picked in pounds is: ${galaPounds}`);
+console.log(`The total number of pink apples picked in pounds is: ${pinkPounds}`);
 
 
 
@@ -175,24 +200,27 @@ let days = 0
 
 /*
     Now that you know the total pounds
-    per variety, use the prices given 
-    at the beginning of this file to 
-    figure out how much you'll make 
-    from selling each type of apple. 
+    per variety, use the prices given
+    at the beginning of this file to
+    figure out how much you'll make
+    from selling each type of apple.
 
-    The prices are per pound and are 
-    written in cents. 
+    The prices are per pound and are
+    written in cents.
 
-    Log each of the profits to the 
-    console. 
+    Log each of the profits to the
+    console.
 */
 
 // CODE HERE
 
-// let fujiProfit =
-// let galaProfit =
-// let pinkProfit =
+let fujiProfit = fujiPounds * fujiPrice;
+let galaProfit = galaPounds * galaPrice;
+let pinkProfit = pinkPounds * pinkPrice;
 
+console.log(`Profit from fuji apples is: ${fujiProfit}`);
+console.log(`Profit from gala apples is: ${galaProfit}`);
+console.log(`Profit from pink apples is: ${pinkProfit}`);
 
 
 
@@ -201,11 +229,14 @@ let days = 0
 // PROBLEM 7
 
 /*
-    Add up all your profits and save 
-    the number to a variable called 
+    Add up all your profits and save
+    the number to a variable called
     `totalProfit`.
 
     Log `totalProfit` to the console.
 */
 
 // CODE HERE
+let totalProfit = fujiProfit + galaProfit + pinkProfit;
+
+console.log(`The total profit is: ${totalProfit}`);
